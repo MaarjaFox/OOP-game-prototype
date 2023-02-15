@@ -4,7 +4,7 @@ using UnityEngine;
 using BestGame.Interfaces;
 using BestGame.Effects;
 
-public class FireballAbility : MonoBehaviour, IAreaAbilty
+public class FireballAbility : MonoBehaviour, IAreaAbilty //implements iAreaAbility interface
 {
 
     private static FireballAbility instance;
@@ -12,17 +12,17 @@ public class FireballAbility : MonoBehaviour, IAreaAbilty
 
     public static FireballAbility Instance
     {
-        get
+        get  
         {
-            if (instance == null)
+            if (instance == null) // If the instance variable is null, execute the following code block
             {
-                instance = GameObject.FindObjectOfType<FireballAbility>();
+                instance = GameObject.FindObjectOfType<FireballAbility>(); 
             }
             return instance;
         }
     }
 
-    public List<int> AbilityRange(Hex epicenter)
+    public List<int> AbilityRange(Hex epicenter) // Define a public method that takes a Hex object as an argument and returns a list of integer IDs of its neighbors
     {
         List<GameObject> _neighbors = epicenter.Neighbors;
         List<int> neighborIds = new List<int>();
@@ -36,15 +36,15 @@ public class FireballAbility : MonoBehaviour, IAreaAbilty
 
     }
 
-    public void Apply(Troop caster, List<Troop> targets)
+    public void Apply(Troop caster, List<Troop> targets) // Define a public method that takes a Troop object as the caster and a list of Troop objects as targets
     {
-        foreach (Troop troop in targets)
+        foreach (Troop troop in targets) 
         {
             int dmg = troop.ApplyDealtDamage(GetDamage(caster), caster.Unit);
             UIManager.Instance.AddLogText(caster.UnitName() + " does " + dmg.ToString() + " to " + troop.UnitName());
 
 
-            if (troop.GetTotalRemainingHealth() < 1)
+            if (troop.GetTotalRemainingHealth() < 1) // If the current Troop object's remaining health is less than 1, destroy the current Troop and display message
             {
                 //hex.occupyingTroop = null;
 
@@ -56,8 +56,8 @@ public class FireballAbility : MonoBehaviour, IAreaAbilty
 
     public int GetDamage(Troop troop)
     {
-        return 20 * troop.Unit.CalculateAttack(troop.typeModifiers(Modifier.ModifierType.ATTACK));
+        return 20 * troop.Unit.CalculateAttack(troop.typeModifiers(Modifier.ModifierType.ATTACK));// Calculate the damage dealt by the troop
     }
-
+    //DMG is 20.
 
 }
