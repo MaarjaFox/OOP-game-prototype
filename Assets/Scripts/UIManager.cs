@@ -12,7 +12,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text battleOverScreen;
     [SerializeField] private Button rangedAttack;
     [SerializeField] private Button fireballAttack;
-    
+    [SerializeField] private Button poisonAttack;
+    [SerializeField] private Button riskAttack;
 
     private string logOutput = "";
 
@@ -70,7 +71,15 @@ public class UIManager : MonoBehaviour
     {
         rangedAttack.gameObject.SetActive(false);
     }
+    public void ShowPoisonButton()
+    {
+        poisonAttack.gameObject.SetActive(true);
+    }
 
+    public void HidePoisonButton()
+    {
+        poisonAttack.gameObject.SetActive(false);
+    }
     public void ShowAreaButton()
     {
         fireballAttack.gameObject.SetActive(true);
@@ -80,8 +89,16 @@ public class UIManager : MonoBehaviour
     {
         fireballAttack.gameObject.SetActive(false);
     }
-    
 
+    public void ShowRiskButton()
+    {
+        riskAttack.gameObject.SetActive(true);
+    }
+
+    public void HideRiskButton()
+    {
+       riskAttack.gameObject.SetActive(false);
+    }
     public void DisplayEndText(string loserName)
     {
         battleOverScreen.gameObject.SetActive(true);
@@ -90,7 +107,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator ClearLogOutput()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(20f);
         logOutput = "";
         textRenderer.text = logOutput;
     }

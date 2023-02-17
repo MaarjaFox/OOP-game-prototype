@@ -48,7 +48,14 @@ namespace BestGame.Units
         {
             return false;
         }
-
+        public virtual bool HasPoisonAbility()
+        {
+            return false;
+        }
+        public virtual IAreaAbilty PoisonRangedAbility()
+        {
+            return null;
+        }
         public virtual IAbilty RangedAbility()
         {
             return null;

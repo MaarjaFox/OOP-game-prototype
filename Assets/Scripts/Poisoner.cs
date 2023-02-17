@@ -27,16 +27,25 @@ namespace BestGame.Units
             return baseHealth;
         }
 
-        public override bool HasRangedAbility()
+        public override bool HasPoisonAbility() //from baseunit
         {
             return true;
         }
+       // public override bool HasRangedAbility()
+        //{
+        //    return true;
+        //}
 
-        public override IAbilty RangedAbility()
+        //public override IAreaAbilty PoisonAbility()
+        //{
+        //UnityEngine.Debug.Log("Returning " + RangedAttackAbility.Instance.ToString());
+        //return RangedAttackAbility.Instance;
+        //   return PoisonAbility.Instance;
+
+        // }
+        public override IAreaAbilty PoisonRangedAbility()
         {
-            UnityEngine.Debug.Log("Returning " + RangedAttackAbility.Instance.ToString());
-            return RangedAttackAbility.Instance;
+            return PoisonAbility.Instance;
         }
-
     }
 }

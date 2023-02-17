@@ -46,6 +46,7 @@ public class BattleTurnManager : MonoBehaviour, IBusSubscriber
         STATE_RIGHT_TURN,
         STATE_PERFORMING_ACTION,
         STATE_PERFORMING_RANGED_ABILITY,
+       // STATE_PERFORMING_POISON_ABILITY,
         STATE_PERFORMING_AREA_ABILITY,
         STATE_DEFAULT,
         STATE_PERFORMING_ATTACK,
@@ -126,7 +127,12 @@ public class BattleTurnManager : MonoBehaviour, IBusSubscriber
         UIManager.Instance.HideRangedAttackButton();
         _highlightTargetableTroops();
     }
-
+    public void SetPerformingPoisonAbility()
+    {
+        this.State = STATES.STATE_PERFORMING_AREA_ABILITY;
+        UIManager.Instance.HidePoisonButton();
+        _highlightTargetableTroops();
+    }
     public void SetPerformingAreaAbility()
     {
         this.State = STATES.STATE_PERFORMING_AREA_ABILITY;
@@ -228,6 +234,7 @@ public class BattleTurnManager : MonoBehaviour, IBusSubscriber
 
                     break;
                 case STATES.STATE_PERFORMING_AREA_ABILITY:
+
                     //If there are valid targets
                     List<int> hexIds = _selectedAreaAbilty.AbilityRange(hex);
                     List<Troop> troops = new List<Troop>();
@@ -244,6 +251,21 @@ public class BattleTurnManager : MonoBehaviour, IBusSubscriber
                     FinishAction();
 
                     break;
+                    ////////////////
+               // case STATES.STATE_PERFORMING_POISON_ABILITY:
+                 //   Debug.Log(hex.occupyingTroop);
+                 //   Debug.Log(hex.Id);
+                  //  Debug.Log(_selectedAbilty);
+                  //  if (_selectedAbilty.CanBeApplied(_actingTroop, hex.occupyingTroop))
+                    //{
+
+
+                  //      _selectedAbilty.Apply(_actingTroop, hex.occupyingTroop);
+                  //  }
+
+                   // FinishAction();
+                    ////////////////////
+                  //  break;
                 case STATES.STATE_PERFORMING_ATTACK:
                     if (_map.HexInCurrentRange(hex))
                     {
@@ -301,7 +323,18 @@ public class BattleTurnManager : MonoBehaviour, IBusSubscriber
 
             UIManager.Instance.HideRangedAttackButton();
         }
+        //////////////
+        if (_actingTroop.hasPoisonAbility())
+        {
+            UIManager.Instance.ShowPoisonButton();
+            _selectedAreaAbilty = _actingTroop.PoisonRangedAbility();
+        }
+        else
+        //////////////////
+        {
 
+            UIManager.Instance.HidePoisonButton();
+        }
         if (_actingTroop.hasAreaAbility())
         {
             UIManager.Instance.ShowAreaButton();

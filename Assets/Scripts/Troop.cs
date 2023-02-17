@@ -105,9 +105,10 @@ public class Troop : MonoBehaviour
                 typeModifiers(Modifier.ModifierType.ATTACK),
                 otherTroop.typeModifiers(Modifier.ModifierType.DEFENSE),
                 typeModifiers(Modifier.ModifierType.DEALING_DAMAGE));
-            //Adding healer so to get the healer modifiers of the healing unit?
+                
+        //Adding healer so to get the healer modifiers of the healing unit?
 
-        }
+    }
 
 
         int dealtDamage = otherTroop.ApplyDealtDamage(damage, Unit); // Apply the dealt damage to the defending unit
@@ -143,7 +144,7 @@ public class Troop : MonoBehaviour
     {
 
     }
-
+    
     public bool hasRangedAbility()
     {
         return Unit.HasRangedAbility();
@@ -163,7 +164,16 @@ public class Troop : MonoBehaviour
     {
         return Unit.AreaAbility();
     }
+    public bool hasPoisonAbility()
+    {
+        return Unit.HasPoisonAbility();
+    }
 
+    public IAreaAbilty PoisonRangedAbility()
+    {
+        return Unit.PoisonRangedAbility();
+    }
+    
     void Retaliate(Troop troop)
     {
         Unit.PerformPreRetaliate(this, troop);
@@ -242,7 +252,8 @@ public class Troop : MonoBehaviour
         else
         {
             int modifiedHealth = Unit.CalculateHealth(typeModifiers(Modifier.ModifierType.HEALTH));
-            return (size - 1) * modifiedHealth + HealthLeft; // If the unit has a positive size, the function calculates how much health is left
+            return (size - 1) * modifiedHealth + HealthLeft;
+            // If the unit has a positive size, the function calculates how much health is left
         }//any remaining health that doesnt make up full modified health point
         //can I just reverse it to (size + 1)... for healer?
     }
@@ -377,5 +388,5 @@ public class Troop : MonoBehaviour
         canRetaliate = true;
     }
 
-
+   
 }

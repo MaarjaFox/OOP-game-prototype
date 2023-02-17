@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace BestGame.Effects
 {
+
     public class Modifier : MonoBehaviour
     {
         public enum ModifierType
@@ -11,6 +12,7 @@ namespace BestGame.Effects
             ATTACK,
             DEALT_DAMAGE,
             DEALING_DAMAGE,
+            //POISON,
             HEALTH,
             INITIATIVE,
             DEFENSE
@@ -37,13 +39,14 @@ namespace BestGame.Effects
 
         private volatile int cooldown = 3;
 
-        [SerializeField] private string name;
+        [SerializeField] private new string name;
 
         public int Apply(int baseAmount)
         {
             if (op == ModifierOperation.ADD)
             {
                 return baseAmount + amount;
+                //Debug.Log("HEALINGTEST");
             }
 
             return baseAmount;
@@ -68,5 +71,6 @@ namespace BestGame.Effects
             }
 
         }
+        
     }
 }
