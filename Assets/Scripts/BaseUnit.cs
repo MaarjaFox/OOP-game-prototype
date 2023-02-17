@@ -43,7 +43,18 @@ namespace BestGame.Units
         {
             return canRetaliate;
         }
-
+        public virtual bool HasMageAbility()
+        {
+            return false;
+        }
+        public virtual bool HasHealingAbility()
+        {
+            return false;
+        }
+        public virtual IAbilty MageAbility()
+        {
+            return null;
+        }
         public virtual bool HasRangedAbility()
         {
             return false;

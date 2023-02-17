@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BestGame.Units
 
 {
-    public class Tank : BaseUnit
+    public class Mage : BaseUnit
     {
         public override int CalculateBaseDamage(BaseUnit other)
         {
@@ -27,15 +27,20 @@ namespace BestGame.Units
             return baseHealth;
         }
 
-        public override bool HasTankAbility() //from baseunit
+        public override bool HasMageAbility()
         {
             return true;
         }
-        
-        public override IAreaAbilty TankAllAbility()
+        public override bool HasHealingAbility()
         {
-            return TankAbility.Instance;
+            return true;
         }
-      
+
+        public override IAbilty MageAbility()
+        {
+            UnityEngine.Debug.Log("Returning " + MageAttackAbility.Instance.ToString());
+            return MageAttackAbility.Instance;
+        }
+
     }
 }

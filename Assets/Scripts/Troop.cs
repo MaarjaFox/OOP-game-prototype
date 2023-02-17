@@ -168,7 +168,7 @@ public class Troop : MonoBehaviour
     {
         return Unit.HasPoisonAbility();
     }
-
+  
     public IAreaAbilty PoisonRangedAbility()
     {
         return Unit.PoisonRangedAbility();

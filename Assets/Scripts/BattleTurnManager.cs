@@ -348,6 +348,8 @@ public class BattleTurnManager : MonoBehaviour, IBusSubscriber
             UIManager.Instance.ShowTankButton();
             UIManager.Instance.ShowRiskButton();
             _selectedAreaAbilty = _actingTroop.TankAllAbility();
+            Risk.Instance.DestroyRandomTroop();
+            Risk.Instance.ResetRiskAbility();
         }
         else
         {

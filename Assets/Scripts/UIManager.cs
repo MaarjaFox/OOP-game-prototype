@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button riskAttack;
     [SerializeField] private Button tankAttack;
 
+
     private string logOutput = "";
 
     private static UIManager _instance;
@@ -99,6 +100,7 @@ public class UIManager : MonoBehaviour
     public void HideRiskButton()
     {
        riskAttack.gameObject.SetActive(false);
+
     }
     public void ShowTankButton()
     {

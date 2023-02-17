@@ -58,5 +58,5 @@ public class TankAbility : MonoBehaviour, IAreaAbilty //implements iAreaAbility 
         return 20 * troop.Unit.CalculateAttack(troop.typeModifiers(Modifier.ModifierType.ATTACK));// Calculate the damage dealt by the troop
     }
     //DMG is 10.
-
+    
 }
