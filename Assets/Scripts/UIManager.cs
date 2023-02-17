@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button poisonAttack;
     [SerializeField] private Button riskAttack;
     [SerializeField] private Button tankAttack;
+    [SerializeField] private Button mageAction;
+    [SerializeField] private Button mageHeal;
 
 
     private string logOutput = "";
@@ -110,6 +112,25 @@ public class UIManager : MonoBehaviour
     public void HideTankButton()
     {
         tankAttack.gameObject.SetActive(false);
+    }
+
+    public void ShowMageButton()
+    {
+        mageAction.gameObject.SetActive(true);
+    }
+
+    public void HideMageButton()
+    {
+        mageAction.gameObject.SetActive(false);
+    }
+    public void ShowHealButton()
+    {
+        mageHeal.gameObject.SetActive(true);
+    }
+
+    public void HideHealButton()
+    {
+        mageHeal.gameObject.SetActive(false);
     }
     public void DisplayEndText(string loserName)
     {

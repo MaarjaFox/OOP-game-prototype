@@ -90,6 +90,14 @@ public class Troop : MonoBehaviour
         modifiers.Add(modifier);
     }
 
+    public void Heal(int amount)
+    {
+        HealthLeft += amount;
+        if (HealthLeft > Unit.CalculateHealth(typeModifiers(Modifier.ModifierType.HEALTH)))
+        {
+            HealthLeft = Unit.CalculateHealth(typeModifiers(Modifier.ModifierType.HEALTH));
+        }
+    }
 
     public void PerformAttack(Troop otherTroop)
     {
@@ -154,7 +162,20 @@ public class Troop : MonoBehaviour
     {
         return Unit.RangedAbility();
     }
+    public void PerformMageAbility(IAbilty ability, Troop target)
+    {
 
+    }
+
+    public bool hasMageAbility()
+    {
+        return Unit.HasRangedAbility();
+    }
+
+    public IAbilty MageAAbility()
+    {
+        return Unit.MageAAbility();
+    }
     public bool hasAreaAbility()
     {
         return Unit.HasAreaAbility();
@@ -180,6 +201,15 @@ public class Troop : MonoBehaviour
     public IAreaAbilty TankAllAbility()
     {
         return Unit.TankAllAbility();
+    }
+
+    public void RestoreHealth(int amount)
+    {
+        HealthLeft += amount;
+        if (HealthLeft > Unit.CalculateHealth(typeModifiers(Modifier.ModifierType.HEALTH)))
+        {
+            HealthLeft = Unit.CalculateHealth(typeModifiers(Modifier.ModifierType.HEALTH));
+        }
     }
     void Retaliate(Troop troop)
     {

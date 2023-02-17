@@ -27,19 +27,15 @@ namespace BestGame.Units
             return baseHealth;
         }
 
-        public override bool HasMageAbility()
-        {
-            return true;
-        }
-        public override bool HasHealingAbility()
+        public override bool HasRangedAbility()
         {
             return true;
         }
 
-        public override IAbilty MageAbility()
+        public override IAbilty MageAAbility()
         {
-            UnityEngine.Debug.Log("Returning " + MageAttackAbility.Instance.ToString());
-            return MageAttackAbility.Instance;
+            UnityEngine.Debug.Log("Returning " + MageAbility.Instance.ToString());
+            return MageAbility.Instance;
         }
 
     }

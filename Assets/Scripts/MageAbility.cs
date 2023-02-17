@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using BestGame.Interfaces;
 
-public class MageAttackAbility : MonoBehaviour, IAbilty
+public class MageAbility : MonoBehaviour, IAbilty
 {
-    private static MageAttackAbility instance;
+    private static MageAbility instance;
 
 
-    public static MageAttackAbility Instance
+    public static MageAbility Instance
     {
         get
         {
             if (instance == null)
             {
-                instance = GameObject.FindObjectOfType<MageAttackAbility>();
+                instance = GameObject.FindObjectOfType<MageAbility>();
             }
             return instance;
         }

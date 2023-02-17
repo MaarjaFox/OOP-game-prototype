@@ -21,6 +21,10 @@ namespace BestGame.Units
         protected int baseDefense = 1;
         [SerializeField]
         protected int baseHealth = 1;
+        [SerializeField]
+        protected int minHeal = 1;
+        [SerializeField]
+        protected int maxHeal = 1;
 
         protected bool canRetaliate = true;
 
@@ -51,7 +55,7 @@ namespace BestGame.Units
         {
             return false;
         }
-        public virtual IAbilty MageAbility()
+        public virtual IAbilty MageAAbility()
         {
             return null;
         }

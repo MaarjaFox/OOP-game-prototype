@@ -46,7 +46,7 @@ public class BattleTurnManager : MonoBehaviour, IBusSubscriber
         STATE_RIGHT_TURN,
         STATE_PERFORMING_ACTION,
         STATE_PERFORMING_RANGED_ABILITY,
-       // STATE_PERFORMING_POISON_ABILITY,
+        STATE_PERFORMING_MAGE_ABILITY,
         STATE_PERFORMING_AREA_ABILITY,
         STATE_DEFAULT,
         STATE_PERFORMING_ATTACK,
@@ -125,6 +125,13 @@ public class BattleTurnManager : MonoBehaviour, IBusSubscriber
     {
         this.State = STATES.STATE_PERFORMING_RANGED_ABILITY;
         UIManager.Instance.HideRangedAttackButton();
+        _highlightTargetableTroops();
+    }
+    public void SetPerformingMageAbility()
+    {
+        this.State = STATES.STATE_PERFORMING_MAGE_ABILITY; //////MAGE ABILITY IS THIS
+        UIManager.Instance.HideMageButton();
+        UIManager.Instance.HideHealButton();
         _highlightTargetableTroops();
     }
     public void SetPerformingPoisonAbility()
@@ -240,6 +247,7 @@ public class BattleTurnManager : MonoBehaviour, IBusSubscriber
                     FinishAction();
 
                     break;
+
                 case STATES.STATE_PERFORMING_AREA_ABILITY:
 
                     //If there are valid targets
@@ -330,6 +338,21 @@ public class BattleTurnManager : MonoBehaviour, IBusSubscriber
 
             UIManager.Instance.HideRangedAttackButton();
         }
+
+        if (_actingTroop.hasMageAbility())
+        {
+            UIManager.Instance.ShowMageButton();
+            UIManager.Instance.ShowHealButton();
+            _selectedAbilty = _actingTroop.MageAAbility();
+           // Heal.Instance.HealAllTroops();
+            //Heal.Instance.ResetHealAbility();
+        }
+        else
+        {
+            UIManager.Instance.HideHealButton();
+            UIManager.Instance.HideMageButton();
+            
+        }
         //////////////
         if (_actingTroop.hasPoisonAbility())
         {
@@ -348,8 +371,8 @@ public class BattleTurnManager : MonoBehaviour, IBusSubscriber
             UIManager.Instance.ShowTankButton();
             UIManager.Instance.ShowRiskButton();
             _selectedAreaAbilty = _actingTroop.TankAllAbility();
-            Risk.Instance.DestroyRandomTroop();
-            Risk.Instance.ResetRiskAbility();
+            //Risk.Instance.DestroyRandomTroop();
+            //Risk.Instance.ResetRiskAbility();
         }
         else
         {

@@ -8,7 +8,8 @@ public class MessageBus : MonoBehaviour
 
     public enum MessageTypes
     {
-        TROOP_DESTROYED
+        TROOP_DESTROYED,
+        TROOP_HEALED
     }
     private static MessageBus _instance;
     private static int latestSubscriberId = 0;

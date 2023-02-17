@@ -45,6 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4edfd6e785dc1194e8f8a5e20192a977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseInitiative: 1
+  minDamage: 1
+  maxDamage: 1
+  baseAttack: 1
+  baseDefense: 1
+  baseHealth: 20
+  minHeal: 1
+  maxHeal: 1
 --- !u!1 &5380984865129628313
 GameObject:
   m_ObjectHideFlags: 0
