@@ -173,7 +173,14 @@ public class Troop : MonoBehaviour
     {
         return Unit.PoisonRangedAbility();
     }
-    
+    public bool hasTankAbility()
+    {
+        return Unit.HasTankAbility();
+    }
+    public IAreaAbilty TankAllAbility()
+    {
+        return Unit.TankAllAbility();
+    }
     void Retaliate(Troop troop)
     {
         Unit.PerformPreRetaliate(this, troop);

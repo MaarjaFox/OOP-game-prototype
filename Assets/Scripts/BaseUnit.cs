@@ -52,6 +52,14 @@ namespace BestGame.Units
         {
             return false;
         }
+        public virtual bool HasTankAbility()
+        {
+            return false;
+        }
+        public virtual IAreaAbilty TankAllAbility()
+        {
+            return null;
+        }
         public virtual IAreaAbilty PoisonRangedAbility()
         {
             return null;

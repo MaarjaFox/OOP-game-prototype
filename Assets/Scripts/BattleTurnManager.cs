@@ -133,6 +133,13 @@ public class BattleTurnManager : MonoBehaviour, IBusSubscriber
         UIManager.Instance.HidePoisonButton();
         _highlightTargetableTroops();
     }
+    public void SetPerformingTankAbility()
+    {
+        this.State = STATES.STATE_PERFORMING_AREA_ABILITY;
+        UIManager.Instance.HideTankButton();
+        UIManager.Instance.HideRiskButton(); ////please work
+        _highlightTargetableTroops();
+    }
     public void SetPerformingAreaAbility()
     {
         this.State = STATES.STATE_PERFORMING_AREA_ABILITY;
@@ -330,10 +337,23 @@ public class BattleTurnManager : MonoBehaviour, IBusSubscriber
             _selectedAreaAbilty = _actingTroop.PoisonRangedAbility();
         }
         else
+
         //////////////////
         {
 
             UIManager.Instance.HidePoisonButton();
+        }
+        if (_actingTroop.hasTankAbility())
+        {
+            UIManager.Instance.ShowTankButton();
+            UIManager.Instance.ShowRiskButton();
+            _selectedAreaAbilty = _actingTroop.TankAllAbility();
+        }
+        else
+        {
+
+            UIManager.Instance.HideTankButton();
+            UIManager.Instance.HideRiskButton();
         }
         if (_actingTroop.hasAreaAbility())
         {

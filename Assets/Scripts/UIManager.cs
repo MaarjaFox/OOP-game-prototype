@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button fireballAttack;
     [SerializeField] private Button poisonAttack;
     [SerializeField] private Button riskAttack;
+    [SerializeField] private Button tankAttack;
 
     private string logOutput = "";
 
@@ -98,6 +99,15 @@ public class UIManager : MonoBehaviour
     public void HideRiskButton()
     {
        riskAttack.gameObject.SetActive(false);
+    }
+    public void ShowTankButton()
+    {
+        tankAttack.gameObject.SetActive(true);
+    }
+
+    public void HideTankButton()
+    {
+        tankAttack.gameObject.SetActive(false);
     }
     public void DisplayEndText(string loserName)
     {
