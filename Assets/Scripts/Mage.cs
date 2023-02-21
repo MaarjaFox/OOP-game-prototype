@@ -27,7 +27,7 @@ namespace BestGame.Units
             return baseHealth;
         }
 
-        public override bool HasRangedAbility()
+        public override bool HasMageAbility()
         {
             return true;
         }

@@ -169,7 +169,8 @@ public class Troop : MonoBehaviour
 
     public bool hasMageAbility()
     {
-        return Unit.HasRangedAbility();
+        return Unit.HasMageAbility();
+
     }
 
     public IAbilty MageAAbility()
