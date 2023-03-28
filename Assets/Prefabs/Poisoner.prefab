@@ -50,7 +50,9 @@ MonoBehaviour:
   maxDamage: 1
   baseAttack: 1
   baseDefense: 1
-  baseHealth: 1
+  baseHealth: 15
+  minHeal: 1
+  maxHeal: 1
 --- !u!1001 &738079757068356971
 PrefabInstance:
   m_ObjectHideFlags: 0

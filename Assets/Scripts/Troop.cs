@@ -23,6 +23,7 @@ public class Troop : MonoBehaviour
 
     private bool canRetaliate = true;  //can attack is set to true
 
+
     public int TotalInitiative //opportunity to act or take charge before others do?
     {
         get { return ApplyInitiativeModifiers(Unit.Initiative); }
@@ -152,7 +153,7 @@ public class Troop : MonoBehaviour
     {
 
     }
-    
+   
     public bool hasRangedAbility()
     {
         return Unit.HasRangedAbility();
@@ -167,6 +168,11 @@ public class Troop : MonoBehaviour
 
     }
 
+    public void SkipTurn(Troop otherTroop)
+    {
+        Modifier mod = Instantiate(SkipTurnMod.Instance.SkipRoundModifier);
+        otherTroop.AddModifier(mod);
+    }
     public bool hasMageAbility()
     {
         return Unit.HasMageAbility();
@@ -320,8 +326,12 @@ public class Troop : MonoBehaviour
                 initiative = modifier.Apply(initiative);
             }
         }
-
+        if (initiative <= 1)
+        {
+            initiative = 1;
+        }
         return initiative;
+       
     }
 
     public void InitializeAt(Hex hex)// Initialize the troop at the given hex, setting its position, moving it to the hex, and setting its ID
@@ -416,15 +426,26 @@ public class Troop : MonoBehaviour
         }
     }
 
+    //public void OnTurnUpdated()
+   // {
+
+       // foreach (var modifier in this.GetComponentsInChildren<Modifier>())
+       // {
+       //     modifier.OnTurnUpdated();
+       // }
+
+       // canRetaliate = true;
+
+      
+    //}
     public void OnTurnUpdated()
     {
-        foreach (var modifier in this.GetComponentsInChildren<Modifier>())
+        var modifiers = GetComponents<Modifier>();
+        foreach (var modifier in modifiers)
         {
             modifier.OnTurnUpdated();
         }
-
         canRetaliate = true;
     }
 
-   
 }

@@ -139,6 +139,7 @@ namespace BestGame.Units
         public int Initiative
         {
             get { return baseInitiative; }
+            set => baseInitiative = value;
         }
 
 

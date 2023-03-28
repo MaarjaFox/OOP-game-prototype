@@ -25,6 +25,8 @@ public class MageAbility : MonoBehaviour, IAbilty
     {
         other.HasRetaliated();
         dealer.PerformAttack(other);
+        dealer.SkipTurn(other);
+        
 
         if (other.GetTotalRemainingHealth() < 1)
         {

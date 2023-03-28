@@ -42,6 +42,14 @@ public class PoisonAbility : MonoBehaviour, IAreaAbilty //implements iAreaAbilit
         {
             int dmg = troop.ApplyDealtDamage(GetDamage(caster), caster.Unit);
             UIManager.Instance.AddLogText(caster.UnitName() + " does " + dmg.ToString() + " to " + troop.UnitName());
+           
+            int poisondmg = 0;
+            if (Random.value > 0.5f) //too unlucky for 50%.
+            {
+                poisondmg = troop.ApplyDealtDamage(GetDamage(caster) / 2, caster.Unit);
+                UIManager.Instance.AddLogText("<color=green>" + caster.UnitName() + " does additional " + poisondmg.ToString() + " poison damage to " + troop.UnitName() + "</color>");
+            }
+
 
 
             if (troop.GetTotalRemainingHealth() < 1) // If the current Troop object's remaining health is less than 1, destroy the current Troop and display message
@@ -52,18 +60,24 @@ public class PoisonAbility : MonoBehaviour, IAreaAbilty //implements iAreaAbilit
                 MessageBus.Instance.Broadcast(MessageBus.MessageTypes.TROOP_DESTROYED, "", troop.TroopId);
             }
 
-            //if (!troop.HasEffect<Modifier>()) // Only apply the poison effect if the target is not already poisoned
-           // {
-           //     Modifier poisonEffect = new Modifier(2, 10, ModifierType.POISON); // Create a new damage over time effect that lasts for two rounds and deals 10 damage per round with poison damage type
+           // if (!troop.hasPoisonAbility<Modifier>()) // Only apply the poison effect if the target is not already poisoned
+          //  {
+           //    Modifier poisonEffect = new Modifier(2, 10, ModifierType.ATTACK); // Create a new damage over time effect that lasts for two rounds and deals 10 damage per round with poison damage type
            //     troop.ApplyEffect(poisonEffect); // Apply the poison effect to the target
-           //     UIManager.Instance.AddLogText(caster.UnitName() + " applies poison to " + troop.UnitName());
+            //    UIManager.Instance.AddLogText(caster.UnitName() + " applies poison to " + troop.UnitName());
            // }
         }
     }
-   
+
     public int GetDamage(Troop troop)
     {
-        return 10 * troop.Unit.CalculateAttack(troop.typeModifiers(Modifier.ModifierType.ATTACK));// Calculate the damage dealt by the troop
+        
+
+        int poisonDamage = 2; // Set the value of the second damage here
+        return 10 *  troop.Unit.CalculateAttack(troop.typeModifiers(Modifier.ModifierType.ATTACK)) * poisonDamage ; // Calculate the damage dealt by the troop
+ 
+
+
     }
     //DMG is 10.
 

@@ -1,7 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using BestGame.Interfaces;
-using System;
-using System.Diagnostics;
 using UnityEngine;
+
 namespace BestGame.Units
 
 {
@@ -26,7 +27,10 @@ namespace BestGame.Units
         {
             return baseHealth;
         }
-
+        public override bool CanRetaliate()
+        {
+            return false;
+        }
         public override bool HasMageAbility()
         {
             return true;

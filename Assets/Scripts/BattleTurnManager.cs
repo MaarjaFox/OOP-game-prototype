@@ -46,7 +46,7 @@ public class BattleTurnManager : MonoBehaviour, IBusSubscriber
         STATE_RIGHT_TURN,
         STATE_PERFORMING_ACTION,
         STATE_PERFORMING_RANGED_ABILITY,
-        //STATE_PERFORMING_MAGE_ABILITY,
+        //STATE_PERFORMING_HEAL_ABILITY,
         STATE_PERFORMING_AREA_ABILITY,
         STATE_DEFAULT,
         STATE_PERFORMING_ATTACK,
@@ -129,8 +129,10 @@ public class BattleTurnManager : MonoBehaviour, IBusSubscriber
     }
     public void SetPerformingMageAbility()
     {
+
         this.State = STATES.STATE_PERFORMING_RANGED_ABILITY; //////MAGE ABILITY IS THIS
-        UIManager.Instance.HideMageButton();
+        //this.State = STATES.STATE_PERFORMING_HEAL_ABILITY;
+       UIManager.Instance.HideMageButton();
         UIManager.Instance.HideHealButton();
         _highlightTargetableTroops();
     }
@@ -321,6 +323,7 @@ public class BattleTurnManager : MonoBehaviour, IBusSubscriber
         _map.HighlightRange(troopHex, _actingTroop.TotalInitiative);
         _map.HiglightHex(troopHex, MapManager.HexHighight.ACTIVE_UNIT);
         _unactedTroops.Remove(_actingTroop);
+
     }
 
     private void checkTroopAbilities()
@@ -476,4 +479,5 @@ public class BattleTurnManager : MonoBehaviour, IBusSubscriber
             }
         }
     }
+
 }

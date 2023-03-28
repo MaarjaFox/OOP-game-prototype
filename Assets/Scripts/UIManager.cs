@@ -138,6 +138,8 @@ public class UIManager : MonoBehaviour
         battleOverScreen.text = "Battle over! " + loserName + " lost!";
     }
 
+
+
     private IEnumerator ClearLogOutput()
     {
         yield return new WaitForSeconds(20f);

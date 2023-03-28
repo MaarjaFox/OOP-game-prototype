@@ -7,12 +7,12 @@ namespace BestGame.Effects
 
     public class Modifier : MonoBehaviour
     {
+        
         public enum ModifierType
         {
             ATTACK,
             DEALT_DAMAGE,
             DEALING_DAMAGE,
-            //POISON,
             HEALTH,
             INITIATIVE,
             DEFENSE
@@ -35,20 +35,24 @@ namespace BestGame.Effects
         [SerializeField]
         public ModifierType type;
 
-        public bool IsEternal = true;
+        public bool IsEternal = false;
 
-        private volatile int cooldown = 3;
+        public volatile int cooldown = 3;
 
-        [SerializeField] private new string name;
+        [SerializeField] private string name;
 
         public int Apply(int baseAmount)
         {
             if (op == ModifierOperation.ADD)
             {
                 return baseAmount + amount;
-                //Debug.Log("HEALINGTEST");
+                
             }
-
+            if (op == ModifierOperation.SUBTRACT)
+            {
+                return baseAmount - amount;
+               
+            }
             return baseAmount;
         }
 
@@ -59,10 +63,11 @@ namespace BestGame.Effects
 
         public void OnTurnUpdated()
         {
+            
             if (!IsEternal)
             {
                 cooldown--;
-                Debug.Log("Decreasing cooldown: " + cooldown.ToString());
+                Debug.Log("Decreasing cooldown: "+cooldown.ToString());
                 if (cooldown == 0)
                 {
                     Debug.Log("Deleting");
