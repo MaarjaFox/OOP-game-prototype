@@ -46,7 +46,7 @@ public class BattleTurnManager : MonoBehaviour, IBusSubscriber
         STATE_RIGHT_TURN,
         STATE_PERFORMING_ACTION,
         STATE_PERFORMING_RANGED_ABILITY,
-        //STATE_PERFORMING_HEAL_ABILITY,
+        STATE_PERFORMING_HEAL_ABILITY,
         STATE_PERFORMING_AREA_ABILITY,
         STATE_DEFAULT,
         STATE_PERFORMING_ATTACK,
@@ -109,6 +109,7 @@ public class BattleTurnManager : MonoBehaviour, IBusSubscriber
         {
             _actingTroop = null;
         }
+
     }
 
     public void SetPerformingAttack()
@@ -131,10 +132,19 @@ public class BattleTurnManager : MonoBehaviour, IBusSubscriber
     {
 
         this.State = STATES.STATE_PERFORMING_RANGED_ABILITY; //////MAGE ABILITY IS THIS
-        //this.State = STATES.STATE_PERFORMING_HEAL_ABILITY;
        UIManager.Instance.HideMageButton();
         UIManager.Instance.HideHealButton();
         _highlightTargetableTroops();
+
+    }
+
+    public void SetPerformingHealAbility()
+    {
+        this.State = STATES.STATE_PERFORMING_HEAL_ABILITY;
+        UIManager.Instance.HideMageButton();
+        UIManager.Instance.HideHealButton();
+        
+        // _highlightTargetableTroops();
     }
     public void SetPerformingPoisonAbility()
     {
@@ -246,8 +256,19 @@ public class BattleTurnManager : MonoBehaviour, IBusSubscriber
 
                         _selectedAbilty.Apply(_actingTroop, hex.occupyingTroop);
                     }
-                    FinishAction();
+                    FinishAction(); 
 
+                    break;
+
+                case STATES.STATE_PERFORMING_HEAL_ABILITY:
+                    
+                    if (_selectedAbilty.CanBeApplied(_actingTroop, null))
+                    {
+                        _selectedAbilty.Apply(_actingTroop, null);
+                    }
+
+                    FinishAction();
+                    Debug.Log("FinishAction() called"); //why is it not being called?
                     break;
 
                 case STATES.STATE_PERFORMING_AREA_ABILITY:

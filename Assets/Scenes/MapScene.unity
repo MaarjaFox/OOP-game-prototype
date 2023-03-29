@@ -496,7 +496,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 86362619}
         m_TargetAssemblyTypeName: BattleTurnManager, Assembly-CSharp
-        m_MethodName: SetPerformingMageAbility
+        m_MethodName: FinishAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1543,7 +1543,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 397391391}
         m_TargetAssemblyTypeName: BattleTurnManager, Assembly-CSharp
-        m_MethodName: SetPerformingTankAbility
+        m_MethodName: FinishAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
